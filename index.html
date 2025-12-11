@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Açaí Zin - Cardápio Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --acai-purple: #8a2be2;
+            --light-purple: #e6d4f7;
+            --accent-pink: #ff66b2;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #343a40;
+            --text-color: #333;
+            --success-green: #28a745;
+            --warning-yellow: #ffc107;
+            --info-blue: #17a2b8;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--acai-purple) 0%, #9b4de3 100%);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "🍇";
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            top: -30px;
+            left: 10%;
+            transform: rotate(25deg);
+        }
+
+        header::after {
+            content: "🍇";
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            bottom: -30px;
+            right: 10%;
+            transform: rotate(-25deg);
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            main {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: var(--acai-purple);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-purple);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--accent-pink);
+        }
+
+        /* Size Selection */
+        .size-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .size-option {
+            border: 2px solid var(--medium-gray);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .size-option:hover {
+            border-color: var(--acai-purple);
+            background-color: var(--light-purple);
+        }
+
+        .size-option.selected {
+            border-color: var(--acai-purple);
+            background-color: var(--light-purple);
+            box-shadow: 0 4px 8px rgba(138, 43, 226, 0.2);
+        }
+
+        .size-label {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+        }
+
+        .size-price {
+            color: var(--success-green);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+
+        /* Toppings Selection */
+        .toppings-container, .fruits-container {
+            margin-top: 20px;
+        }
+
+        .toppings-grid, .fruits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .topping-item, .fruit-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .topping-item:hover, .fruit-item:hover {
+            background-color: var(--medium-gray);
+            transform: translateX(5px);
+        }
+
+        .topping-item.selected, .fruit-item.selected {
+            background-color: var(--light-purple);
+            border-left: 4px solid var(--acai-purple);
+        }
+
+        .topping-checkbox, .fruit-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--acai-purple);
+        }
+
+        .counter {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .counter.warning {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--warning-yellow);
+        }
+
+        /* Order Actions */
+        .order-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-btn {
+            background-color: var(--info-blue);
+            color: white;
+        }
+
+        .add-btn:hover {
+            background-color: #138496;
+            transform: translateY(-2px);
+        }
+
+        .reset-btn {
+            background-color: var(--medium-gray);
+            color: var(--dark-gray);
+        }
+
+        .reset-btn:hover {
+            background-color: #dae0e5;
+            transform: translateY(-2px);
+        }
+
+        /* Client Info */
+        .client-info {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--acai-purple);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-content {
+            margin-top: 20px;
+        }
+
+        .order-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 10px;
+        }
+
+        .order-item {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--acai-purple);
+        }
+
+        .order-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .order-item-title {
+            font-weight: 600;
+            color: var(--acai-purple);
+        }
+
+        .order-item-price {
+            font-weight: 700;
+            color: var(--success-green);
+        }
+
+        .order-item-details {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .remove-order-btn {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .remove-order-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--medium-gray);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--acai-purple);
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid var(--light-purple);
+        }
+
+        .summary-note {
+            font-style: italic;
+            color: #666;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Order Button */
+        .order-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--acai-purple) 0%, #9b4de3 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            box-shadow: 0 6px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .order-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.4);
+        }
+
+        .order-btn:active {
+            transform: translateY(1px);
+        }
+
+        .order-btn i {
+            margin-right: 10px;
+        }
+
+        .order-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-info h3 {
+            color: var(--acai-purple);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 50px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--light-purple);
+            margin-bottom: 10px;
+        }
+
+        .footer-tagline {
+            opacity: 0.8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--medium-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                padding: 20px;
+            }
+            
+            .card-title {
+                font-size: 1.5rem;
+            }
+            
+            .size-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .toppings-grid, .fruits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Açaí Zin</h1>
+            <p class="tagline">🍇✨ O sabor que refresca, energiza e vicia! ✨🍇</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Product Customization Section -->
+            <section class="card">
+                <h2 class="card-title"><i class="fas fa-glass-whiskey"></i> Monte seu Açaí</h2>
+                
+                <!-- Size Selection -->
+                <div class="size-selection">
+                    <h3>Escolha o tamanho:</h3>
+                    <div class="size-options">
+                        <div class="size-option" data-size="300" data-price="10.00">
+                            <div class="size-label">300ml</div>
+                            <div class="size-price">R$ 10,00</div>
+                        </div>
+                        <div class="size-option" data-size="400" data-price="12.00">
+                            <div class="size-label">400ml</div>
+                            <div class="size-price">R$ 12,00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toppings Selection -->
+                <div class="toppings-container">
+                    <h3>Complementos (até 4):</h3>
+                    <div class="toppings-grid" id="toppingsGrid"></div>
+                    <div class="counter" id="toppingsCounter">
+                        <span>Complementos selecionados:</span>
+                        <span id="selectedToppingsCount">0</span>
+                    </div>
+                </div>
+
+                <!-- Fruits Selection -->
+                <div class="fruits-container">
+                    <h3>Frutas (até 2):</h3>
+                    <div class="fruits-grid" id="fruitsGrid"></div>
+                    <div class="counter" id="fruitsCounter">
+                        <span>Frutas selecionadas:</span>
+                        <span id="selectedFruitsCount">0</span>
+                    </div>
+                </div>
+
+                <!-- Order Actions -->
+                <div class="order-actions">
+                    <button class="action-btn add-btn" id="addToOrderBtn">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                    </button>
+                    <button class="action-btn reset-btn" id="resetBtn">
+                        <i class="fas fa-redo"></i> Limpar Seleção
+                    </button>
+                </div>
+
+                <!-- Client Information -->
+                <div class="client-info">
+                    <h3>Informações para Entrega</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="clientName">Nome Completo *</label>
+                        <input type="text" id="clientName" class="form-input" placeholder="Digite seu nome completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="clientPhone">Telefone/WhatsApp *</label>
+                        <input type="tel" id="clientPhone" class="form-input" placeholder="(83) 9 9999-9999">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="blockNumber">Bloco/Prédio</label>
+                            <input type="text" id="blockNumber" class="form-input" placeholder="Número do bloco">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="apartmentNumber">Apartamento</label>
+                            <input type="text" id="apartmentNumber" class="form-input" placeholder="Nº do apartamento">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="deliveryNotes">Observações para entrega</label>
+                        <input type="text" id="deliveryNotes" class="form-input" placeholder="Ex: Portão azul, entregar com vizinho, etc.">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Order Summary Section -->
+            <section class="card order-summary">
+                <h2 class="card-title"><i class="fas fa-receipt"></i> Resumo do Pedido</h2>
+                
+                <div class="summary-content">
+                    <div class="order-list" id="orderList">
+                        <!-- Orders will be dynamically added here -->
+                        <div class="empty-state" id="emptyOrderState">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Seu pedido está vazio</p>
+                            <p>Adicione açaís usando o botão "Adicionar ao Pedido"</p>
+                        </div>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Quantidade de itens:</span>
+                        <span id="summaryItemCount">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Subtotal:</span>
+                        <span id="summarySubtotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total do Pedido:</span>
+                        <span id="summaryTotal">R$ 0,00</span>
+                    </div>
+                    
+                    <p class="summary-note">💜 Monte do jeitinho que você ama! 💜</p>
+                    
+                    <button class="order-btn" id="orderBtn" disabled>
+                        <i class="fab fa-whatsapp"></i> Finalizar Pedido via WhatsApp
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h3>Precisa de ajuda?</h3>
+            <p>Ligue ou envie mensagem diretamente:</p>
+            <a href="https://wa.me/5583986724134" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> +55 83 98672-4134
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Açaí Zin</div>
+            <p class="footer-tagline">Seu momento mais gostoso do dia! 🍇✨</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data from the menu
+        const menuData = {
+            sizes: [
+                { size: 300, price: 10.00, label: "300ml" },
+                { size: 400, price: 12.00, label: "400ml" }
+            ],
+            toppings: [
+                "Leite em pó",
+                "Granola",
+                "Farinha Láctea",
+                "Ovomaltine",
+                "MM's",
+                "Leite condensado",
+                "Creme de avelã (chocolate)",
+                "Amendoim triturado",
+                "Chocoball"
+            ],
+            fruits: [
+                { name: "Morango", emoji: "🍓" },
+                { name: "Banana", emoji: "🍌" }
+            ]
+        };
+
+        // State of the current selection and orders
+        let currentSelection = {
+            selectedSize: null,
+            selectedToppings: [],
+            selectedFruits: []
+        };
+
+        let orders = [];
+        let orderCounter = 1;
+
+        // DOM elements
+        const toppingsGrid = document.getElementById('toppingsGrid');
+        const fruitsGrid = document.getElementById('fruitsGrid');
+        const selectedToppingsCount = document.getElementById('selectedToppingsCount');
+        const selectedFruitsCount = document.getElementById('selectedFruitsCount');
+        const toppingsCounter = document.getElementById('toppingsCounter');
+        const fruitsCounter = document.getElementById('fruitsCounter');
+        const orderList = document.getElementById('orderList');
+        const emptyOrderState = document.getElementById('emptyOrderState');
+        const summaryItemCount = document.getElementById('summaryItemCount');
+        const summarySubtotal = document.getElementById('summarySubtotal');
+        const summaryTotal = document.getElementById('summaryTotal');
+        const orderBtn = document.getElementById('orderBtn');
+        const addToOrderBtn = document.getElementById('addToOrderBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // Client info elements
+        const clientName = document.getElementById('clientName');
+        const clientPhone = document.getElementById('clientPhone');
+        const blockNumber = document.getElementById('blockNumber');
+        const apartmentNumber = document.getElementById('apartmentNumber');
+        const deliveryNotes = document.getElementById('deliveryNotes');
+
+        // Initialize the UI
+        document.addEventListener('DOMContentLoaded', function() {
+            renderToppings();
+            renderFruits();
+            setupSizeSelection();
+            setupPhoneMask();
+            setupOrderButton();
+            setupAddToOrderButton();
+            setupResetButton();
+            updateSummary();
+        });
+
+        // Render toppings
+        function renderToppings() {
+            toppingsGrid.innerHTML = '';
+            
+            menuData.toppings.forEach(topping => {
+                const toppingItem = document.createElement('div');
+                toppingItem.className = 'topping-item';
+                toppingItem.innerHTML = `
+                    <input type="checkbox" class="topping-checkbox" id="topping-${topping.replace(/\s+/g, '-')}" value="${topping}">
+                    <label for="topping-${topping.replace(/\s+/g, '-')}">${topping}</label>
+                `;
+                
+                toppingItem.addEventListener('click', function(e) {
+                    if (e.target.type !== 'checkbox') {
+                        const checkbox = this.querySelector('.topping-checkbox');
+                        checkbox.checked = !checkbox.checked;
+                        checkbox.dispatchEvent(new Event('change'));
+                    }
+                });
+                
+                const checkbox = toppingItem.querySelector('.topping-checkbox');
+                checkbox.addEventListener('change', function() {
+                    if (this.checked && currentSelection.selectedToppings.length >= 4) {
+                        alert('Você pode selecionar no máximo 4 complementos!');
+                        this.checked = false;
+                        return;
+                    }
+                    
+                    if (this.checked) {
+                        currentSelection.selectedToppings.push(topping);
+                    } else {
+                        const index = currentSelection.selectedToppings.indexOf(topping);
+                        if (index > -1) {
+                            currentSelection.selectedToppings.splice(index, 1);
+                        }
+                    }
+                    
+                    updateToppingsCounter();
+                    updateToppingItemStyle(toppingItem, this.checked);
+                });
+                
+                toppingsGrid.appendChild(toppingItem);
+            });
+        }
+
+        // Render fruits
+        function renderFruits() {
+            fruitsGrid.innerHTML = '';
+            
+            menuData.fruits.forEach(fruit => {
+                const fruitItem = document.createElement('div');
+                fruitItem.className = 'fruit-item';
+                fruitItem.innerHTML = `
+                    <input type="checkbox" class="fruit-checkbox" id="fruit-${fruit.name}" value="${fruit.name}">
+                    <label for="fruit-${fruit.name}">${fruit.emoji} ${fruit.name}</label>
+                `;
+                
+                fruitItem.addEventListener('click', function(e) {
+                    if (e.target.type !== 'checkbox') {
+                        const checkbox = this.querySelector('.fruit-checkbox');
+                        checkbox.checked = !checkbox.checked;
+                        checkbox.dispatchEvent(new Event('change'));
+                    }
+                });
+                
+                const checkbox = fruitItem.querySelector('.fruit-checkbox');
+                checkbox.addEventListener('change', function() {
+                    if (this.checked && currentSelection.selectedFruits.length >= 2) {
+                        alert('Você pode selecionar no máximo 2 frutas!');
+                        this.checked = false;
+                        return;
+                    }
+                    
+                    if (this.checked) {
+                        currentSelection.selectedFruits.push(fruit.name);
+                    } else {
+                        const index = currentSelection.selectedFruits.indexOf(fruit.name);
+                        if (index > -1) {
+                            currentSelection.selectedFruits.splice(index, 1);
+                        }
+                    }
+                    
+                    updateFruitsCounter();
+                    updateFruitItemStyle(fruitItem, this.checked);
+                });
+                
+                fruitsGrid.appendChild(fruitItem);
+            });
+        }
+
+        // Setup size selection
+        function setupSizeSelection() {
+            const sizeOptions = document.querySelectorAll('.size-option');
+            
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Update current selection
+                    const size = parseInt(this.getAttribute('data-size'));
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    currentSelection.selectedSize = { size, price };
+                });
+            });
+            
+            // Select first size by default
+            if (sizeOptions.length > 0) {
+                sizeOptions[0].click();
+            }
+        }
+
+        // Setup phone mask
+        function setupPhoneMask() {
+            clientPhone.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                if (value.length > 11) {
+                    value = value.substring(0, 11);
+                }
+                
+                if (value.length > 10) {
+                    value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+                } else if (value.length > 6) {
+                    value = value.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
+                } else if (value.length > 2) {
+                    value = value.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
+                } else if (value.length > 0) {
+                    value = value.replace(/^(\d*)$/, '($1');
+                }
+                
+                e.target.value = value;
+                
+                // Enable/disable order button based on form completion
+                validateForm();
+            });
+        }
+
+        // Update toppings counter
+        function updateToppingsCounter() {
+            const count = currentSelection.selectedToppings.length;
+            selectedToppingsCount.textContent = count;
+            
+            if (count >= 4) {
+                toppingsCounter.classList.add('warning');
+            } else {
+                toppingsCounter.classList.remove('warning');
+            }
+        }
+
+        // Update fruits counter
+        function updateFruitsCounter() {
+            const count = currentSelection.selectedFruits.length;
+            selectedFruitsCount.textContent = count;
+            
+            if (count >= 2) {
+                fruitsCounter.classList.add('warning');
+            } else {
+                fruitsCounter.classList.remove('warning');
+            }
+        }
+
+        // Update topping item style
+        function updateToppingItemStyle(item, isSelected) {
+            if (isSelected) {
+                item.classList.add('selected');
+            } else {
+                item.classList.remove('selected');
+            }
+        }
+
+        // Update fruit item style
+        function updateFruitItemStyle(item, isSelected) {
+            if (isSelected) {
+                item.classList.add('selected');
+            } else {
+                item.classList.remove('selected');
+            }
+        }
+
+        // Setup add to order button
+        function setupAddToOrderButton() {
+            addToOrderBtn.addEventListener('click', function() {
+                if (!currentSelection.selectedSize) {
+                    alert('Por favor, selecione um tamanho para o açaí!');
+                    return;
+                }
+                
+                // Create new order item
+                const orderItem = {
+                    id: orderCounter++,
+                    size: currentSelection.selectedSize,
+                    toppings: [...currentSelection.selectedToppings],
+                    fruits: [...currentSelection.selectedFruits],
+                    price: currentSelection.selectedSize.price
+                };
+                
+                // Add to orders array
+                orders.push(orderItem);
+                
+                // Render the new order in the list
+                renderOrderItem(orderItem);
+                
+                // Update summary
+                updateSummary();
+                
+                // Show order list, hide empty state
+                emptyOrderState.style.display = 'none';
+                
+                // Validate form for order button
+                validateForm();
+                
+                // Show confirmation
+                showNotification('Açaí adicionado ao pedido!', 'success');
+            });
+        }
+
+        // Setup reset button
+        function setupResetButton() {
+            resetBtn.addEventListener('click', function() {
+                // Reset current selection
+                currentSelection.selectedToppings = [];
+                currentSelection.selectedFruits = [];
+                
+                // Reset checkboxes
+                document.querySelectorAll('.topping-checkbox:checked').forEach(cb => cb.checked = false);
+                document.querySelectorAll('.fruit-checkbox:checked').forEach(cb => cb.checked = false);
+                
+                // Reset styles
+                document.querySelectorAll('.topping-item.selected').forEach(item => item.classList.remove('selected'));
+                document.querySelectorAll('.fruit-item.selected').forEach(item => item.classList.remove('selected'));
+                
+                // Reset counters
+                updateToppingsCounter();
+                updateFruitsCounter();
+                
+                showNotification('Seleção limpa!', 'info');
+            });
+        }
+
+        // Render order item in the list
+        function renderOrderItem(orderItem) {
+            const orderItemElement = document.createElement('div');
+            orderItemElement.className = 'order-item';
+            orderItemElement.id = `order-${orderItem.id}`;
+            
+            // Format toppings and fruits
+            const toppingsText = orderItem.toppings.length > 0 
+                ? `Complementos: ${orderItem.toppings.join(', ')}` 
+                : 'Sem complementos';
+                
+            const fruitsText = orderItem.fruits.length > 0 
+                ? `Frutas: ${orderItem.fruits.join(', ')}` 
+                : 'Sem frutas';
+            
+            orderItemElement.innerHTML = `
+                <div class="order-item-header">
+                    <div class="order-item-title">Açaí ${orderItem.size.size}ml</div>
+                    <div class="order-item-price">R$ ${orderItem.price.toFixed(2).replace('.', ',')}</div>
+                </div>
+                <div class="order-item-details">${toppingsText}</div>
+                <div class="order-item-details">${fruitsText}</div>
+                <button class="remove-order-btn" data-id="${orderItem.id}">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            `;
+            
+            // Add remove functionality
+            const removeBtn = orderItemElement.querySelector('.remove-order-btn');
+            removeBtn.addEventListener('click', function() {
+                const id = parseInt(this.getAttribute('data-id'));
+                removeOrderItem(id);
+            });
+            
+            // Insert before empty state
+            orderList.insertBefore(orderItemElement, emptyOrderState);
+        }
+
+        // Remove order item
+        function removeOrderItem(id) {
+            // Remove from array
+            const index = orders.findIndex(order => order.id === id);
+            if (index !== -1) {
+                orders.splice(index, 1);
+            }
+            
+            // Remove from DOM
+            const orderElement = document.getElementById(`order-${id}`);
+            if (orderElement) {
+                orderElement.remove();
+            }
+            
+            // Update summary
+            updateSummary();
+            
+            // Show empty state if no orders
+            if (orders.length === 0) {
+                emptyOrderState.style.display = 'block';
+            }
+            
+            showNotification('Item removido do pedido!', 'info');
+        }
+
+        // Update order summary
+        function updateSummary() {
+            const itemCount = orders.length;
+            const subtotal = orders.reduce((total, order) => total + order.price, 0);
+            const total = subtotal; // No tax or delivery fee for now
+            
+            summaryItemCount.textContent = itemCount;
+            summarySubtotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            summaryTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        // Validate form for order button
+        function validateForm() {
+            const nameValid = clientName.value.trim().length > 0;
+            const phoneValid = clientPhone.value.replace(/\D/g, '').length >= 10;
+            const hasOrders = orders.length > 0;
+            
+            orderBtn.disabled = !(nameValid && phoneValid && hasOrders);
+        }
+
+        // Setup form validation
+        clientName.addEventListener('input', validateForm);
+        clientPhone.addEventListener('input', validateForm);
+
+        // Setup order button
+        function setupOrderButton() {
+            orderBtn.addEventListener('click', function() {
+                if (orders.length === 0) {
+                    alert('Adicione pelo menos um açaí ao pedido!');
+                    return;
+                }
+                
+                if (!clientName.value.trim()) {
+                    alert('Por favor, informe seu nome!');
+                    clientName.focus();
+                    return;
+                }
+                
+                if (clientPhone.value.replace(/\D/g, '').length < 10) {
+                    alert('Por favor, informe um telefone válido!');
+                    clientPhone.focus();
+                    return;
+                }
+                
+                // Build order message for WhatsApp
+                let message = `*PEDIDO AÇAÍ ZIN*%0A%0A`;
+                message += `*Cliente:* ${clientName.value}%0A`;
+                message += `*Telefone:* ${clientPhone.value}%0A`;
+                
+                if (blockNumber.value.trim()) {
+                    message += `*Bloco/Prédio:* ${blockNumber.value}%0A`;
+                }
+                
+                if (apartmentNumber.value.trim()) {
+                    message += `*Apartamento:* ${apartmentNumber.value}%0A`;
+                }
+                
+                if (deliveryNotes.value.trim()) {
+                    message += `*Observações:* ${deliveryNotes.value}%0A`;
+                }
+                
+                message += `%0A*DETALHES DO PEDIDO:*%0A`;
+                
+                orders.forEach((order, index) => {
+                    message += `%0A*Item ${index + 1}:* Açaí ${order.size.size}ml%0A`;
+                    
+                    if (order.toppings.length > 0) {
+                        message += `- Complementos: ${order.toppings.join(', ')}%0A`;
+                    }
+                    
+                    if (order.fruits.length > 0) {
+                        message += `- Frutas: ${order.fruits.join(', ')}%0A`;
+                    }
+                    
+                    message += `- Preço: R$ ${order.price.toFixed(2).replace('.', ',')}%0A`;
+                });
+                
+                const total = orders.reduce((sum, order) => sum + order.price, 0);
+                message += `%0A*TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*%0A%0A`;
+                message += `Por favor, confirmem meu pedido! 🍇✨`;
+                
+                // Open WhatsApp with the message
+                const phoneNumber = "5583986724134";
+                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+                
+                // Show confirmation
+                showNotification('Pedido enviado para o WhatsApp!', 'success');
+            });
+        }
+
+        // Show notification
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 10px;
+                color: white;
+                font-weight: 600;
+                z-index: 1000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+            `;
+            
+            // Set color based on type
+            if (type === 'success') {
+                notification.style.backgroundColor = '#28a745';
+            } else if (type === 'info') {
+                notification.style.backgroundColor = '#17a2b8';
+            } else if (type === 'warning') {
+                notification.style.backgroundColor = '#ffc107';
+                notification.style.color = '#212529';
+            }
+            
+            // Add CSS for animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Add to DOM
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
